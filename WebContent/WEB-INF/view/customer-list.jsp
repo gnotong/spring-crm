@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Customers</title>
+<title>Cutomer Relational Mapping</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 </head>
@@ -19,8 +19,7 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarColor03">
 				<ul class="navbar-nav me-auto">
-					<li class="nav-item"><a class="nav-link" href="home">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="customers">Customer list</a></li>
+					<li class="nav-item"><a class="nav-link" href="list">Customer list</a></li>
 				</ul>
 			</div>
 		</div>
@@ -28,6 +27,11 @@
 	<div class="container mt-4 mb-4">
 		<div id="content">
 			<h2>All customers</h2>
+			<button type="button" class="btn btn-dark mt-2 mb-2">
+				<a href="add" class="text-decoration-none">
+					+ Add
+				</a>
+			</button>
 			<table class="table table-hover">
 				<thead>
 					<tr>

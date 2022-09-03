@@ -16,18 +16,23 @@ public class CustomerController {
 	@Autowired
 	private CustomerDAO customerDAO;
 
-	@RequestMapping("/home")
+	@RequestMapping("/")
 	public String index() {
 		return "index";
 	}
 
-	@RequestMapping("/customers")
+	@RequestMapping("/customer/list")
 	public String list(Model model) {
 		
 		List<Customer> customers = customerDAO.getCustomers();
 		
 		model.addAttribute("customers", customers);
 		
-		return "customers";
+		return "customer-list";
+	}
+
+	@RequestMapping("/customer/add")
+	public String add() {
+		return "customer-form";
 	}
 }
