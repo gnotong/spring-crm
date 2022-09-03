@@ -16,7 +16,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerDAO customerDAO;
 
-	@RequestMapping("/")
+	@RequestMapping("/home")
 	public String index() {
 		return "index";
 	}
