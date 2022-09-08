@@ -16,11 +16,6 @@ public class CustomerController {
 	@Autowired
 	private CustomerDAO customerDAO;
 
-	@RequestMapping("/")
-	public String index() {
-		return "index";
-	}
-
 	@RequestMapping("/customer/list")
 	public String list(Model model) {
 		
