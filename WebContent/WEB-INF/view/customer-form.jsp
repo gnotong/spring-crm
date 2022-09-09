@@ -1,10 +1,48 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8" />
-	<title>Add customer</title>
+<meta charset="UTF-8" />
+<title>Add customer</title>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 </head>
 <body>
-	<h1>Add customer</h1>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">CRM</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarColor03"
+				aria-controls="navbarColor03" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarColor03">
+				<ul class="navbar-nav me-auto">
+					<li class="nav-item"><a class="nav-link" href="list">Customer
+							list</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+		<h1>Add customer</h1>
+		<form:form action="save" modelAttribute="customer" method="POST">
+			<div class="form-group">
+				<label for="firstName">First Name</label>
+				<form:input cssClass="form-control" path="firstName" />
+			</div>
+			<div class="form-group">
+				<label for="lastName">Last Name</label>
+				<form:input cssClass="form-control" path="lastName" />
+			</div>
+			<div class="form-group">
+				<label for="email">Email</label>
+				<form:input cssClass="form-control" path="email" />
+			</div>
+			<button type="submit" class="btn btn-primary">Save</button>
+		</form:form>
+	</div>
 </body>
 </html>

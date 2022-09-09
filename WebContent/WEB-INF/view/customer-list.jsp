@@ -19,47 +19,48 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarColor03">
 				<ul class="navbar-nav me-auto">
-					<li class="nav-item"><a class="nav-link" href="list">Customer list</a></li>
+					<li class="nav-item"><a class="nav-link" href="list">Customer
+							list</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 	<div class="container mt-4 mb-4">
-		<div id="content">
-			<h2>All customers</h2>
-			<a href="add" class="text-decoration-none">
-				<button type="button" class="btn btn-dark mt-2 mb-2">
-					+ Add
-				</button>
-			</a>
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th scope="col">#</th>
-						<th scope="col">First Name</th>
-						<th scope="col">Last Name</th>
-						<th scope="col">Email</th>
-						<th scope="col">Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${ customers }" var="customer">
-						<tr class="table-dark">
-							<th scope="row">${ customer.id }</th>
-							<td>${ customer.firstName }</td>
-							<td>${ customer.lastName }</td>
-							<td>${ customer.email }</td>
-							<td>
+		<h2>All customers</h2>
+		<a href="add" class="text-decoration-none">
+			<button type="button" class="btn btn-success mt-2 mb-2">+ Add</button>
+		</a>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">First Name</th>
+					<th scope="col">Last Name</th>
+					<th scope="col">Email</th>
+					<th scope="col">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${ customers }" var="customer">
+					<tr class="table-dark">
+						<th scope="row">${ customer.id }</th>
+						<td>${ customer.firstName }</td>
+						<td>${ customer.lastName }</td>
+						<td>${ customer.email }</td>
+						<td>
 							<div class="row">
-								<div class="col-6"><button type="button" class="btn btn-primary">Update</button></div>
-								<div class="col-6"><button type="button" class="btn btn-danger">Delete</button></div>
+								<div class="col-6">
+									<button type="button" class="btn btn-primary">Update</button>
+								</div>
+								<div class="col-6">
+									<button type="button" class="btn btn-danger">Delete</button>
+								</div>
 							</div>
-							</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 	</div>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
