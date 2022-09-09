@@ -27,11 +27,11 @@
 	<div class="container mt-4 mb-4">
 		<div id="content">
 			<h2>All customers</h2>
-			<button type="button" class="btn btn-dark mt-2 mb-2">
-				<a href="add" class="text-decoration-none">
+			<a href="add" class="text-decoration-none">
+				<button type="button" class="btn btn-dark mt-2 mb-2">
 					+ Add
-				</a>
-			</button>
+				</button>
+			</a>
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -39,6 +39,7 @@
 						<th scope="col">First Name</th>
 						<th scope="col">Last Name</th>
 						<th scope="col">Email</th>
+						<th scope="col">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -48,6 +49,12 @@
 							<td>${ customer.firstName }</td>
 							<td>${ customer.lastName }</td>
 							<td>${ customer.email }</td>
+							<td>
+							<div class="row">
+								<div class="col-6"><button type="button" class="btn btn-primary">Update</button></div>
+								<div class="col-6"><button type="button" class="btn btn-danger">Delete</button></div>
+							</div>
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
