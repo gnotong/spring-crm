@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="com.notgabs.utils.SortUtil" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,11 +34,20 @@
 		</a>
 		<table class="table table-hover">
 			<thead>
+				<c:url var="searchFirstNameUrl" value="/customer/list">
+					<c:param name="sort" value="<%= Integer.toString(SortUtil.FIRST_NAME) %>"/>
+				</c:url>
+				<c:url var="searchLastNameUrl" value="/customer/list">
+					<c:param name="sort" value="<%= Integer.toString(SortUtil.LAST_NAME) %>"/>
+				</c:url>
+				<c:url var="searchEmailUrl" value="/customer/list">
+					<c:param name="sort" value="<%= Integer.toString(SortUtil.EMAIL) %>"/>
+				</c:url>
 				<tr>
 					<th scope="col">#</th>
-					<th scope="col">First Name</th>
-					<th scope="col">Last Name</th>
-					<th scope="col">Email</th>
+					<th scope="col"><a href="${ searchFirstNameUrl }">First Name</a></th>
+					<th scope="col"><a href="${ searchLastNameUrl }">Last Name</a></th>
+					<th scope="col"><a href="${ searchEmailUrl }">Email</a></th>
 					<th scope="col">Actions</th>
 				</tr>
 			</thead>

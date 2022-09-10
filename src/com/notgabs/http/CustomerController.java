@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.notgabs.entity.Customer;
 import com.notgabs.service.CustomerService;
+import com.notgabs.utils.SortUtil;
 
 @Controller
 @RequestMapping("/customer")
@@ -22,9 +24,13 @@ public class CustomerController {
 	private CustomerService customerService;
 
 	@GetMapping("/list")
-	public String list(Model model) {
+	public String list(@RequestParam(name="sort", required = false) String sort, Model model) {
 
-		List<Customer> customers = customerService.getCustomers();
+		List<Customer> customers = null;
+		
+		int sortField = null != sort ? Integer.parseInt(sort) : SortUtil.FIRST_NAME;
+		
+		customers = customerService.getCustomers(sortField);
 
 		model.addAttribute("customers", customers);
 

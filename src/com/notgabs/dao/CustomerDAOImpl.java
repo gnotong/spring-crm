@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.notgabs.entity.Customer;
+import com.notgabs.utils.SortUtil;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
@@ -17,12 +18,33 @@ public class CustomerDAOImpl implements CustomerDAO {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public List<Customer> getCustomers() {
+	public List<Customer> getCustomers(int sort) {
 		Session session = sessionFactory.getCurrentSession();
-		
-		Query<Customer> query = session.createQuery("from Customer order by firstName", Customer.class);
-		
+
+		String sortField = getSortField(sort);
+
+		Query<Customer> query = session.createQuery("from Customer order by " + sortField, Customer.class);
+
 		return query.getResultList();
+	}
+
+	private String getSortField(int sort) {
+		String sortField = null;
+
+		switch (sort) {
+		case SortUtil.FIRST_NAME:
+			sortField = "firstName";
+			break;
+		case SortUtil.LAST_NAME:
+			sortField = "lastName";
+			break;
+		case SortUtil.EMAIL:
+			sortField = "email";
+			break;
+		default:
+			sortField = "lastName";
+		}
+		return sortField;
 	}
 
 	@Override
@@ -34,18 +56,17 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public Customer getCustomer(int id) {
 		Session session = sessionFactory.getCurrentSession();
-		Customer customer = session.get(Customer.class, id);
-		return customer;
+		return session.get(Customer.class, id);
 	}
 
 	@Override
 	public void deleteCustomer(int id) {
 		Session session = sessionFactory.getCurrentSession();
-		
-		Query query =  session.createQuery("delete from Customer where id = :id");
-		
+
+		Query query = session.createQuery("delete from Customer where id = :id");
+
 		query.setParameter("id", id);
-		
+
 		query.executeUpdate();
 	}
 }
