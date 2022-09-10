@@ -60,7 +60,7 @@
 									</a>
 								</div>
 								<div class="col-6">
-									<a href="${deleteLink}">
+									<a href="${deleteLink}" onclick="return confirm('Are you sure you want to delete this customer ?');">
 										<button type="button" class="btn btn-danger">Delete</button>
 									</a>
 								</div>
