@@ -19,7 +19,7 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarColor03">
 				<ul class="navbar-nav me-auto">
-					<li class="nav-item"><a class="nav-link" href="list">Customer
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/customer/list">Customer
 							list</a></li>
 				</ul>
 			</div>
@@ -27,8 +27,9 @@
 	</nav>
 	<div class="container mt-4 mb-4">
 		<h2>All customers</h2>
-		<a href="add" class="text-decoration-none">
-			<button type="button" class="btn btn-success mt-2 mb-2">+ Add</button>
+		<a href="${pageContext.request.contextPath}/customer/add" class="text-decoration-none">
+			<button type="button" class="btn btn-success mt-2 mb-2">+
+				Add</button>
 		</a>
 		<table class="table table-hover">
 			<thead>
@@ -42,6 +43,10 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${ customers }" var="customer">
+
+					<c:url var="updateLink" value="/customer/${customer.id}/edit" />
+					<c:url var="deleteLink" value="/customer/${customer.id}/delete" />
+
 					<tr class="table-dark">
 						<th scope="row">${ customer.id }</th>
 						<td>${ customer.firstName }</td>
@@ -50,10 +55,14 @@
 						<td>
 							<div class="row">
 								<div class="col-6">
-									<button type="button" class="btn btn-primary">Update</button>
+									<a href="${updateLink}">
+										<button type="button" class="btn btn-primary">Update</button>
+									</a>
 								</div>
 								<div class="col-6">
-									<button type="button" class="btn btn-danger">Delete</button>
+									<a href="${deleteLink}">
+										<button type="button" class="btn btn-danger">Delete</button>
+									</a>
 								</div>
 							</div>
 						</td>

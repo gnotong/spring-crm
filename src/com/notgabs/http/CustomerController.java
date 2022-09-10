@@ -7,18 +7,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.notgabs.entity.Customer;
 import com.notgabs.service.CustomerService;
 
 @Controller
+@RequestMapping("/customer")
 public class CustomerController {
 
 	@Autowired
 	private CustomerService customerService;
 
-	@GetMapping("/customer/list")
+	@GetMapping("/list")
 	public String list(Model model) {
 
 		List<Customer> customers = customerService.getCustomers();
@@ -28,15 +31,24 @@ public class CustomerController {
 		return "customer-list";
 	}
 
-	@GetMapping("/customer/add")
+	@GetMapping("/add")
 	public String add(Model model) {
 		model.addAttribute("customer", new Customer());
 		return "customer-form";
 	}
 
-	@PostMapping("/customer/save")
+	@PostMapping("/save")
 	public String save(@ModelAttribute("customer") Customer customer) {
 		customerService.saveCustomer(customer);
 		return "redirect:/customer/list";
+	}
+	
+	@GetMapping("/{customerId}/edit")
+	public String edit(@PathVariable("customerId") int id, Model model) {
+		Customer customer = customerService.getCustomer(id);
+		
+		model.addAttribute("customer", customer);
+		
+		return "customer-form";
 	}
 }

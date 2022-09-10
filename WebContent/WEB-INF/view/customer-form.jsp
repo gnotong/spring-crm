@@ -19,7 +19,8 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarColor03">
 				<ul class="navbar-nav me-auto">
-					<li class="nav-item"><a class="nav-link" href="list">Customer
+					<li class="nav-item"><a class="nav-link"
+						href="${pageContext.request.contextPath}/customer/list">Customer
 							list</a></li>
 				</ul>
 			</div>
@@ -27,19 +28,24 @@
 	</nav>
 
 	<div class="container">
-		<h1>Add customer</h1>
-		<form:form action="save" modelAttribute="customer" method="POST">
+		<h1>Save customer</h1>
+		<form:form action="${pageContext.request.contextPath}/customer/save"
+			modelAttribute="customer" method="POST">
+
+			<!-- Bind id to the customer if exists -->
+			<form:hidden path="id"/>
+
 			<div class="form-group">
 				<label for="firstName">First Name</label>
-				<form:input cssClass="form-control" path="firstName" />
+				<form:input path="firstName" cssClass="form-control"/>
 			</div>
 			<div class="form-group">
 				<label for="lastName">Last Name</label>
-				<form:input cssClass="form-control" path="lastName" />
+				<form:input path="lastName" cssClass="form-control"/>
 			</div>
 			<div class="form-group">
 				<label for="email">Email</label>
-				<form:input cssClass="form-control" path="email" />
+				<form:input path="email" cssClass="form-control"/>
 			</div>
 			<button type="submit" class="btn btn-primary">Save</button>
 		</form:form>
