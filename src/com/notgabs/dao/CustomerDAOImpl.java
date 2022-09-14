@@ -20,10 +20,12 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Override
 	public List<Customer> getCustomers(int sort) {
 		Session session = sessionFactory.getCurrentSession();
+		
+		Query<Customer> query = null;
 
 		String sortField = getSortField(sort);
-
-		Query<Customer> query = session.createQuery("from Customer order by " + sortField, Customer.class);
+		
+		query = session.createQuery("from Customer order by " + sortField, Customer.class);
 
 		return query.getResultList();
 	}
@@ -68,5 +70,25 @@ public class CustomerDAOImpl implements CustomerDAO {
 		query.setParameter("id", id);
 
 		query.executeUpdate();
+	}
+
+	@Override
+	public List<Customer> searchCustomers(String filter) {
+		Session session = sessionFactory.getCurrentSession();
+		
+		Query<Customer> query = null;
+
+		String queryString = "from Customer";
+		
+		if (null != filter && filter.trim().length() > 0) {
+			queryString += " where firstName like :first or lastName like :last";
+			query = session.createQuery(queryString, Customer.class);
+			query.setParameter("first", "%" + filter + "%");
+			query.setParameter("last", "%" + filter + "%");
+		} else {
+			query = session.createQuery(queryString, Customer.class);
+		}
+		
+		return query.getResultList();
 	}
 }

@@ -6,6 +6,7 @@ import com.notgabs.entity.Customer;
 
 public interface CustomerService {
 	public List<Customer> getCustomers(int sort);
+	public List<Customer> searchCustomers(String filter);
 
 	public void saveCustomer(Customer customer);
 

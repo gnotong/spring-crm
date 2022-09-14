@@ -37,6 +37,19 @@ public class CustomerController {
 		return "customer-list";
 	}
 
+	@GetMapping("/search")
+	public String search(@RequestParam(name="filter", required = false) String filter, Model model) {
+
+		List<Customer> customers = null;
+				
+		customers = customerService.searchCustomers(filter);
+
+		model.addAttribute("customers", customers);
+		model.addAttribute("filter", filter);
+
+		return "customer-list";
+	}
+
 	@GetMapping("/add")
 	public String add(Model model) {
 		model.addAttribute("customer", new Customer());
